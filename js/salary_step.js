@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api/salary-steps';
+const API_URL = 'https://quanlyhosocongchuc.onrender.com/api';
 let globalSalarySteps = [];
 
 // 1. TẢI DANH SÁCH

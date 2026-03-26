@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api/work-history';
+const API_URL = 'https://quanlyhosocongchuc.onrender.com/api';
 let globalWorkHistories = []; 
 
 // 1. READ

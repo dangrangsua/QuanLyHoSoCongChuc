@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api/reward-discipline';
+const API_URL = 'https://quanlyhosocongchuc.onrender.com/api';
 let globalRDs = [];
 
 // 1. TẢI DANH SÁCH

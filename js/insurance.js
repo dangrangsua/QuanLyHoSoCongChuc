@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api/insurances';
+const API_URL = 'https://quanlyhosocongchuc.onrender.com/api';
 let globalInsurances = [];
 
 // 1. TẢI DANH SÁCH
