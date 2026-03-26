@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Nhân viên - Nhóm 9</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f4f6f9; }
+        .sidebar { min-height: 100vh; background-color: #343a40; }
+        .sidebar a { color: #c2c7d0; text-decoration: none; display: block; padding: 10px 15px; border-radius: 5px; margin-bottom: 5px; font-size: 14px;}
+        .sidebar a:hover, .sidebar a.active { background-color: #0d6efd; color: white; }
+        .card-header { font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="d-flex">
+    <div class="sidebar p-3" style="width: 250px;">
+        <h4 class="text-center mb-4 text-white">HỆ THỐNG QLHS</h4>
+        <a href="profile.html">🔍 Tra cứu Hồ sơ</a>
+        <a href="index.html" class="active">👥 Nhân viên</a>
+        <a href="work_history.html">📜 Quá trình CT</a>
+        <a href="department.html">🏢 Phòng ban</a>
+        <a href="decision.html">⚖️ Quyết định</a>
+        <a href="position.html">🏅 Chức vụ</a>
+        <a href="salary_rank.html">💰 Ngạch Lương</a>
+        <a href="salary_step.html">📈 Bậc Lương</a>
+        <a href="salary_history.html">🕒 Lịch sử Lương</a>
+        <a href="insurance.html">🛡️ Bảo hiểm</a>
+        <a href="reward_discipline.html">🏆 Khen thưởng - Kỷ luật</a>
+        <a href="annual_assessment.html">📝 Đánh giá hàng năm</a>
+        <a href="qualification.html">🎓 Bằng cấp </a>
+        <a href="degree.html">📜 Chi tiết Bằng ĐH</a>
+        <a href="training.html">🎯 Khóa Đào tạo</a>
+        <a href="relative.html">👨‍👩‍👧‍👦 Thân nhân</a>
+        <a href="employee_relative.html">🔗 Mối quan hệ</a> </div>
+
+    <div class="flex-grow-1 p-4">
+        <div class="card p-4 shadow-sm border-0">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="text-primary">👥 Danh sách Nhân viên</h3>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">+ Thêm Nhân viên</button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Mã NV</th>
+                            <th>Họ và Tên</th>
+                            <th>Ngày Sinh</th>
+                            <th>Điện thoại</th>
+                            <th>Email</th>
+                            <th>Quê quán</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeeList">
+                        <tr><td colspan="7" class="text-center">Đang tải dữ liệu...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Thêm Nhân viên</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addForm">
+                    <div class="row mb-3">
+                        <div class="col-md-3"><label>Mã NV (*)</label><input type="text" class="form-control" id="add_id" required></div>
+                        <div class="col-md-3"><label>Họ</label><input type="text" class="form-control" id="add_first"></div>
+                        <div class="col-md-3"><label>Tên đệm</label><input type="text" class="form-control" id="add_middle"></div>
+                        <div class="col-md-3"><label>Tên (*)</label><input type="text" class="form-control" id="add_last" required></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3"><label>Điện thoại</label><input type="text" class="form-control" id="add_phone"></div>
+                        <div class="col-md-3"><label>Email</label><input type="email" class="form-control" id="add_email"></div>
+                        <div class="col-md-3"><label>Ngày sinh</label><input type="date" class="form-control" id="add_dob"></div>
+                        <div class="col-md-3">
+                            <label>Giới tính</label>
+                            <select class="form-select" id="add_gender">
+                                <option value="Nam">Nam</option><option value="Nữ">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3"><label>CCCD</label><input type="text" class="form-control" id="add_idcard"></div>
+                        <div class="col-md-3"><label>Dân tộc</label><input type="text" class="form-control" id="add_ethnicity"></div>
+                        <div class="col-md-3"><label>Tôn giáo</label><input type="text" class="form-control" id="add_religion"></div>
+                        <div class="col-md-3"><label>Trạng thái CV</label><input type="text" class="form-control" id="add_status" placeholder="Đang làm/Nghỉ việc"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><label>Quê quán</label><input type="text" class="form-control" id="add_hometown"></div>
+                        <div class="col-md-6"><label>Địa chỉ hiện tại</label><input type="text" class="form-control" id="add_address"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><label>Lý luận chính trị</label><input type="text" class="form-control" id="add_political"></div>
+                        <div class="col-md-6"><label>Ngày vào Đảng</label><input type="date" class="form-control" id="add_party_date"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="addEmployee()">Lưu Lại</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title">Sửa Hồ sơ Nhân viên</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <div class="row mb-3">
+                        <div class="col-md-3"><label>Mã NV (Khóa)</label><input type="text" class="form-control" id="edit_id" readonly></div>
+                        <div class="col-md-3"><label>Họ</label><input type="text" class="form-control" id="edit_first"></div>
+                        <div class="col-md-3"><label>Tên đệm</label><input type="text" class="form-control" id="edit_middle"></div>
+                        <div class="col-md-3"><label>Tên</label><input type="text" class="form-control" id="edit_last"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3"><label>Điện thoại</label><input type="text" class="form-control" id="edit_phone"></div>
+                        <div class="col-md-3"><label>Email</label><input type="email" class="form-control" id="edit_email"></div>
+                        <div class="col-md-3"><label>Ngày sinh</label><input type="date" class="form-control" id="edit_dob"></div>
+                        <div class="col-md-3">
+                            <label>Giới tính</label>
+                            <select class="form-select" id="edit_gender">
+                                <option value="Nam">Nam</option><option value="Nữ">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3"><label>CCCD</label><input type="text" class="form-control" id="edit_idcard"></div>
+                        <div class="col-md-3"><label>Dân tộc</label><input type="text" class="form-control" id="edit_ethnicity"></div>
+                        <div class="col-md-3"><label>Tôn giáo</label><input type="text" class="form-control" id="edit_religion"></div>
+                        <div class="col-md-3"><label>Trạng thái CV</label><input type="text" class="form-control" id="edit_status"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><label>Quê quán</label><input type="text" class="form-control" id="edit_hometown"></div>
+                        <div class="col-md-6"><label>Địa chỉ hiện tại</label><input type="text" class="form-control" id="edit_address"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6"><label>Lý luận chính trị</label><input type="text" class="form-control" id="edit_political"></div>
+                        <div class="col-md-6"><label>Ngày vào Đảng</label><input type="date" class="form-control" id="edit_party_date"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-warning" onclick="updateEmployee()">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/employee.js"></script>
+</body>
+</html>
